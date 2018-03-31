@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <style>
+      .paragraphOne {
+
+      }
+      .paragraphTwo {
+
+      }
+      .myClass {
+        background:red;
+      }
+      .thatClass {
+        color:gold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="btn1">Button 1</button>
+    <p class="paragraphOne">This is a paragraph</p>
+    <p class="paragraphTwo">This is another paragraph</p>
+    <div id="myDiv"></div>
+    <input id="addNewItem" type="text" name="text" value="Add New Item">
+    <ul id="myList">
+      <li>List Item 1</li>
+      <li>List Item 2</li>
+      <li>List Item 3</li>
+      <li>List Item 4</li>
+      <li>List Item 5</li>
+    </ul>
+    <ul id="myList2"></ul>
+    <ul id="myArray"></ul>
+    <a href="http://google.com">Google</a>
+    <br><br>
+
+    <script>
+      $('p.paragraphOne').addClass('myClass');
+      $('button#btn1').on('click', function() {
+        $('.paragraphTwo').toggleClass('thatClass');
+      });
+      //$('#myDiv').text('Hello World');
+      $('#myDiv').html('<h1>Hello World</h1>');
+      //alert($('#myDiv').text());
+      $('ul#myList').append('<li>Appended List Item'); // Adds to the end of the contents of the element
+      $('ul#myList').prepend('<li>Prepended List Item'); // Adds to the beginning of the contents of the element
+      $('.paragraphOne').appendTo('.paragraphTwo');
+      $('.paragraphOne').prependTo('.paragraphTwo');
+      $('ul#myList').before('<h4>Hello</h4'); // Adds BEFORE the element
+      $('ul#myList').after('<h4>World</h4>'); // Adds AFTER the element
+      //$('ul').empty(); // Removes the contents of elements
+      //$('ul').detach(); // Completely removes element from DOM
+      $('a').attr('target', '_blank'); // Opens Link New in New Window
+      //alert($('a').attr('href'));
+      $('a').removeAttr('target'); // Removes the Opening New Window attribute
+
+      $('p').wrap('<h2>'); // wrap each of the p elements in h2 elements
+      $('p').wrapAll('<h2>'); // wrap all the p elements in an h2 element
+
+      var myArr = ['Brad', 'Kelley', 'Nate', 'Jose'];
+
+      $.each(myArr, function(i, val) {
+          console.log(val);
+      });
+
+      $.each(myArr, function(i, val) {
+        $('#myArray').append('<li>'+ val +'</li>')
+      });
+
+      var newestArray = $('#myList').toArray();
+      $.each(newestArray, function(i, val) {
+        console.log(val.innerHTML);
+        $('#myList2').append(val.innerHTML);
+      });
+
+      $('input#addNewItem').keyup(function(e) {
+        var code = e.which;
+        if(code == 13) {
+          $('#myList').append('<li>' + e.target.value + '</li>');
+        }
+      });
+
+      </script>
+
+
+  </body>
+
+
+
+</html>
